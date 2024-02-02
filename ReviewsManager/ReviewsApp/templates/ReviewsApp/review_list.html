@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Все отзывы{% endblock title %}
+{% block header %}Все отзывы{% endblock header %}
+{% block content %}
+    <form align="right" method="GET" action="{% url 'list' %}">
+        {{ form.as_p }}
+    </form>
+    <ul>
+      {% for reviews in object_list %}
+      <li>
+          <p>Автор: {{ reviews.name }}</p>
+          <p>Текст: {{ reviews.text }}</p>
+          <p>Оценка: {{ reviews.rate }}</p>
+      </li>
+        {% empty %}
+      <li>No reviews yet.</li>
+        {% endfor %}
+    </ul>
+{% endblock content %}

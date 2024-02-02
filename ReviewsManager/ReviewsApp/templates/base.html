@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Title{% endblock title %}</title>
+    <style>
+        *{ font-family: "Comic Sans MS", "Comic Sans", cursive; }
+        p { margin: 0.5em }
+        ul { padding: 0em }
+        li {
+                margin-left: 0em;
+                margin-right: 0em;
+                margin-top: 1em;
+                background: #ffffff;
+                list-style-type: none;
+                width:45em;
+                padding: 2em;
+                border-radius: 2em;
+            }
+        a,input[type=submit]{
+                width: auto;
+                display: inline;
+                background: #158bcd;
+                border-radius: 0.5em;
+                color: white;
+                font-weight: bold;
+                line-height: 25px;
+                text-align: center;
+                padding-left: 1em;
+                padding-right: 1em;
+                padding-top:0.2em;
+                padding-bottom:0.2em;
+                text-decoration: none;
+        }
+        a { height: auto; }
+        input[type=submit] { border:none; }
+
+        body {
+            max-width: max-content;
+            margin: auto;
+            background: #fbdfb1;
+        }
+    </style>
+</head>
+<body>
+<h1 align="center">{% block header %}{% endblock header %}</h1>
+<div>{% block content %}{% endblock content %}</div>
+</body>
+</html>
