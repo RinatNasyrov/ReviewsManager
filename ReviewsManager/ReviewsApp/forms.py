@@ -5,8 +5,9 @@ class ReviewCreateForm(forms.ModelForm):
     class Meta:
         model = Review
         fields = ['name','text','rate']
-        labels = {
-            'name' : 'Имя',
-            'text': 'Текст',
-            'rate': 'Оценка'
-        }
+        #Здесь можно так, но в фильтрах так переименовать не получается, только verbose_name='...'
+        # labels = {
+        #     'name': 'Имя',
+        #     'text': 'Текст',
+        #     'rate': 'Оценка'
+        # }

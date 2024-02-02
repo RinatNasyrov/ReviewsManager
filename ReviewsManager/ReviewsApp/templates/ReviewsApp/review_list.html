@@ -5,6 +5,8 @@
     <a href="{% url 'review' %}">Новый отзыв</a>
     <form align="right" method="GET" action="{% url 'list' %}">
         {{ form.as_p }}
+        <a href="{% url 'list' %}">Очистить</a>
+        <input type="submit" value="Выбрать">
     </form>
     <ul>
       {% for reviews in object_list %}
