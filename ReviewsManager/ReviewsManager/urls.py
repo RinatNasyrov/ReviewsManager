@@ -21,4 +21,5 @@ from ReviewsApp import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('list/', views.ReviewsList.as_view(), name='list'),
+    path('review/', views.ReviewCreate.as_view(), name='review')
 ]

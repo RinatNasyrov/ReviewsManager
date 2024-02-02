@@ -2,6 +2,7 @@
 {% block title %}Все отзывы{% endblock title %}
 {% block header %}Все отзывы{% endblock header %}
 {% block content %}
+    <a href="{% url 'review' %}">Новый отзыв</a>
     <form align="right" method="GET" action="{% url 'list' %}">
         {{ form.as_p }}
     </form>
