@@ -5,7 +5,12 @@
 <form method="post">
     {% csrf_token %}
     <a href="{% url 'list' %}">Назад</a>
-    {{ form.as_p }}
+    {% for field in form %}
+            <div>{{ field.label_tag }}</div>
+            <div>{{ field }}</div>
+            <div>{{ field.errors }}</div>
+    {% endfor %}
+    <br>
     <input type="submit" value="Сохранить"/>
 </form>
 {% endblock content %}
