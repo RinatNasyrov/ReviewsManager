@@ -18,12 +18,13 @@ from django.contrib import admin
 from django.urls import path
 from ReviewsApp import views
 from ReviewsApp.views import ReviewAPIView
+#from ReviewsApp.views import ReviewAPIView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.ReviewsList.as_view()),
     path('list/', views.ReviewsList.as_view(), name='list'),
     path('review/', views.ReviewCreate.as_view(), name='review'),
-    path('api/v1/list', ReviewAPIView.as_view({'get':'list'}), name='api_list'),
-    path('api/v1/review', ReviewAPIView.as_view({'post': 'create'}), name='api_review'),
+    path('api/v1/get_list', ReviewAPIView.as_view(), name='api_list'),
+    path('api/v1/post_reviews', ReviewAPIView.as_view(), name='api_reviews'),
 ]

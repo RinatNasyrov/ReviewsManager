@@ -2,6 +2,8 @@ from django.db.models import Q
 from django.shortcuts import render
 from django.views.generic import ListView, CreateView
 from rest_framework.generics import ListAPIView
+from rest_framework.response import Response
+from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 
 from .models import Review
@@ -30,6 +32,18 @@ class ReviewCreate(CreateView):
         form.instance.user_from = self.request.user
         return super().form_valid(form)
 
-class ReviewAPIView(ModelViewSet):
-    queryset = Review.objects.all()
-    serializer_class = ReviewSerializer
+# class ReviewAPIView(ModelViewSet):
+#     queryset = Review.objects.all()
+#     serializer_class = ReviewSerializer
+
+class ReviewAPIView(APIView):
+    def get(self, request):
+        reviews = Review.objects.all()
+        return Response(ReviewSerializer(reviews, many=True).data)
+
+    def post(self, request):
+        serializer = ReviewSerializer(data=request.data, many=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+
+        return Response(serializer.data)
