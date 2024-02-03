@@ -1,9 +1,14 @@
 from django.db.models import Q
 from django.shortcuts import render
 from django.views.generic import ListView, CreateView
+from rest_framework.generics import ListAPIView
+from rest_framework.viewsets import ModelViewSet
+
 from .models import Review
 from .forms import ReviewCreateForm
 from .filters import ReviewFilter
+from .serializers import ReviewSerializer
+
 
 class ReviewsList(ListView):
     model = Review
@@ -24,3 +29,7 @@ class ReviewCreate(CreateView):
     def form_valid(self, form):
         form.instance.user_from = self.request.user
         return super().form_valid(form)
+
+class ReviewAPIView(ModelViewSet):
+    queryset = Review.objects.all()
+    serializer_class = ReviewSerializer
