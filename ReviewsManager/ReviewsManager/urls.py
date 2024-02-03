@@ -15,17 +15,21 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.shortcuts import redirect
 from django.urls import path
 from ReviewsApp import views
 from ReviewsApp.views import ReviewPostAPIView, ReviewGetAPIView
 
-#from ReviewsApp.views import ReviewAPIView
+def redirect_to_list(request):
+    return redirect('list')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.ReviewsList.as_view()),
+    #Веб-страницы
+    path('', redirect_to_list),
     path('list/', views.ReviewsList.as_view(), name='list'),
     path('review/', views.ReviewCreate.as_view(), name='review'),
+    #API
     path('api/v1/get_list', ReviewGetAPIView.as_view(), name='api_list'),
     path('api/v1/post_reviews', ReviewPostAPIView.as_view(), name='api_reviews'),
 ]

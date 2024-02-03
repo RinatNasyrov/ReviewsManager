@@ -22,6 +22,12 @@ class ReviewsList(ListView):
         return res
     def get_queryset(self):
         queryset = super().get_queryset().order_by('-id')
+
+        #Костыльная сортировка
+        order_param=self.request.GET.get('order_by')
+        if not order_param is None and order_param!='':
+            queryset = queryset.order_by(order_param)
+
         self.filterset = ReviewFilter(self.request.GET,queryset=queryset)
         return self.filterset.qs
 
