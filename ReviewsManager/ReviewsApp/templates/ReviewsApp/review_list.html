@@ -3,11 +3,37 @@
 {% block header %}Все отзывы{% endblock header %}
 {% block content %}
     <a href="{% url 'review' %}">Новый отзыв</a>
-    <form align="right" method="GET" action="{% url 'list' %}">
-        {{ form.as_p }}
-        <a href="{% url 'list' %}">Очистить</a>
-        <input type="submit" value="Выбрать">
-    </form>
+    <span>
+        <form align="right" method="GET" action="{% url 'list' %}">
+            {{ form.as_p }}
+            <a href="{% url 'list' %}">Очистить</a>
+            <input type="submit" value="Найти">
+        </form>
+
+        <form align="right" method="GET" id="sort_form">
+            <div> <label for="order_select">Сортировать по:</label> </div>
+            <div>
+                <select name="order_by" id="order_select" onchange="updateAction(this)">
+                    <option value="">--Не выбрано--</option>
+                    <option value="name">Имя по возрастанию</option>
+                    <option value="-name">Имя по убыванию</option>
+                    <option value="rate">Оценка по возрастанию</option>
+                    <option value="-rate">Оценка по убыванию</option>
+                </select>
+            </div>
+            <br>
+            <input type="submit" value="Сортировать">
+        </form>
+    </span>
+
+    <script>
+        function updateAction(selectElement) {
+            var selectedOption = selectElement.options[selectElement.selectedIndex].value;
+            var formElement = document.getElementById("sort_form");
+            var url = "{% url 'list' %}" + "?selected=" + selectedOption;
+            formElement.setAttribute("action", url);
+        }
+    </script>
     <ul>
       {% for reviews in object_list %}
       <li>

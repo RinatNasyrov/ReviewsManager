@@ -1,6 +1,7 @@
 from django.db.models import Q
 from django.shortcuts import render
 from django.views.generic import ListView, CreateView
+from django_filters import OrderingFilter
 from rest_framework.generics import ListAPIView
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -11,11 +12,11 @@ from .forms import ReviewCreateForm
 from .filters import ReviewFilter
 from .serializers import ReviewSerializer
 
-
 class ReviewsList(ListView):
     model = Review
     queryset = Review.objects.all()
     template_name = 'ReviewsApp/review_list.html'
+
     def get_context_data(self, *, object_list=None, **kwargs):
         res = super().get_context_data(object_list=None, **kwargs)
         res['form']=self.filterset.form
@@ -32,6 +33,7 @@ class ReviewCreate(CreateView):
         form.instance.user_from = self.request.user
         return super().form_valid(form)
 
+#Дальше только APIViews
 class ReviewGetAPIView(APIView):
     def get(self, request):
         reviews = Review.objects.all()
