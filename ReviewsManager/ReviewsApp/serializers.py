@@ -3,11 +3,6 @@ from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer, Serializer
 from .models import Review
 
-# class ReviewSerializer(ModelSerializer):
-#     class Meta:
-#         model = Review
-#         fields = ('name', 'text', 'rate')
-
 class ReviewSerializer(Serializer):
     name = serializers.CharField(max_length=32)
     text = serializers.CharField()

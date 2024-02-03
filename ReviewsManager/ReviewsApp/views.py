@@ -32,15 +32,12 @@ class ReviewCreate(CreateView):
         form.instance.user_from = self.request.user
         return super().form_valid(form)
 
-# class ReviewAPIView(ModelViewSet):
-#     queryset = Review.objects.all()
-#     serializer_class = ReviewSerializer
-
-class ReviewAPIView(APIView):
+class ReviewGetAPIView(APIView):
     def get(self, request):
         reviews = Review.objects.all()
         return Response(ReviewSerializer(reviews, many=True).data)
 
+class ReviewPostAPIView(APIView):
     def post(self, request):
         serializer = ReviewSerializer(data=request.data, many=True)
         serializer.is_valid(raise_exception=True)

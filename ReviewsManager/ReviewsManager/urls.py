@@ -17,7 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from ReviewsApp import views
-from ReviewsApp.views import ReviewAPIView
+from ReviewsApp.views import ReviewPostAPIView, ReviewGetAPIView
+
 #from ReviewsApp.views import ReviewAPIView
 
 urlpatterns = [
@@ -25,6 +26,6 @@ urlpatterns = [
     path('', views.ReviewsList.as_view()),
     path('list/', views.ReviewsList.as_view(), name='list'),
     path('review/', views.ReviewCreate.as_view(), name='review'),
-    path('api/v1/get_list', ReviewAPIView.as_view(), name='api_list'),
-    path('api/v1/post_reviews', ReviewAPIView.as_view(), name='api_reviews'),
+    path('api/v1/get_list', ReviewGetAPIView.as_view(), name='api_list'),
+    path('api/v1/post_reviews', ReviewPostAPIView.as_view(), name='api_reviews'),
 ]
