@@ -11,7 +11,16 @@ python -m pip install -U pip
 
 pip install -r requirements.txt
 ```
-Run locally:
+Локальный запуск:
 ```
 python manage.py runserver
+```
+## Using API
+Получение списка отзывов в JSON-формате GET-запростом:
+```
+/api/v1/get_list
+```
+Отправка списка обзоров в JSON-формате POST-запросом:
+```
+/api/v1/post_reviews
 ```
