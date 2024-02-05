@@ -15,7 +15,7 @@ pip install -r requirements.txt
 ```
 python manage.py runserver
 ```
-## Using API
+## Using REST API
 Получение списка отзывов в JSON-формате GET-запростом:
 ```
 /api/v1/get_list
