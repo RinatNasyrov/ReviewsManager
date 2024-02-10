@@ -16,6 +16,7 @@ class ReviewsList(ListView):
     model = Review
     queryset = Review.objects.all()
     template_name = 'ReviewsApp/review_list.html'
+    paginate_by = 3
     def get_context_data(self, *, object_list=None, **kwargs):
         res = super().get_context_data(object_list=None, **kwargs)
         res['form']=self.filterset.form
