@@ -58,6 +58,7 @@
         {% endfor %}
     </ul>
 
+    {% if page_obj.has_other_pages %}
     <nav>
         <ul>
             {% for p in paginator.page_range %}
@@ -67,4 +68,6 @@
             {% endfor %}
         </ul>
     </nav>
+    {% endif %}
+    <br>
 {% endblock content %}
